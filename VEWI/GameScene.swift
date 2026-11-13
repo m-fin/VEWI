@@ -361,10 +361,17 @@ class GameScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-            guard let button = activeTouches[touch] else { fatalError("Touch just ended but not found into activeTouches")}
+            //A touch we never saw begin (e.g. it started before this scene appeared) is ignored instead of crashing the app
+            guard let button = activeTouches[touch] else { continue }
             activeTouches[touch] = nil
             tapEnd(on: button)
         }
+    }
+    
+    //iOS cancels touches (e.g. too many fingers at once, a system gesture, or an incoming call).
+    //Treat that like lifting the finger so the key doesn't stay down and the note doesn't hang.
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touchesEnded(touches, with: event)
     }
     
     private func tapBegin(on button: String) {
