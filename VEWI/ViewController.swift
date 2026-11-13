@@ -16,6 +16,7 @@ var transpositionValue = 0
 var octaveModifierValue = 0.0
 var waveformValue: AKTable = sine
 var rampDuration = 0.05
+var volumeValue = 1.0
 
 //Maps the settings controls to values, shared by the settings screen and app launch
 func transpositionSemitones(forSegment index: Int) -> Int {
@@ -38,12 +39,16 @@ func waveform(forSegment index: Int) -> AKTable {
 //Loads the saved settings into the globals the instrument plays with.
 //Without this the settings screen showed the saved choices, but the sound used the defaults until they were changed again.
 func loadSavedSettings() {
-    let defaults = UserDefaults.standard
-    transpositionValue = transpositionSemitones(forSegment: defaults.integer(forKey: "Transposition_Value_Index"))
-    octaveModifierValue = defaults.double(forKey: "Octave_Value")
-    waveformValue = waveform(forSegment: defaults.integer(forKey: "Waveform_Value_Index"))
+    let settings = SaxSettings.load()
+    transpositionValue = settings.transposition.semitones
+    octaveModifierValue = Double(settings.octaveShift)
+    waveformValue = waveform(forSegment: settings.waveform.rawValue)
+    volumeValue = settings.volume
+    rampDuration = settings.rampDuration
 }
 
+//Old storyboard settings screen. The settings button now opens SettingsViewController instead;
+//this scene can be removed from Main.storyboard in Xcode.
 class ViewController: UITableViewController {
     
     var GameScene:GameScene?

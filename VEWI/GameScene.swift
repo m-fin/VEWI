@@ -102,6 +102,10 @@ class GameScene: SKScene {
         
         audioSetup()
         
+        //Rebuild the sound when settings change (the waveform can only be set when the oscillator is created)
+        NotificationCenter.default.removeObserver(self, name: SaxSettings.didChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(settingsDidChange), name: SaxSettings.didChangeNotification, object: nil)
+        
         /*
         let vc = ViewController(nibName: "ViewController", bundle: nil)
         vc.GameScene = self
@@ -143,7 +147,7 @@ class GameScene: SKScene {
         oscillator = AKOscillator(waveform: waveformValue) //Initializes oscillator and sets waveform
         
         mixer = AKMixer(oscillator)
-        mixer.volume = 1
+        mixer.volume = volumeValue
         AudioKit.output = mixer
         AKSettings.playbackWhileMuted = true //Allows AudioKit to play regardless of mute switch
         do {
@@ -155,6 +159,13 @@ class GameScene: SKScene {
         } catch {
             AKLog("AudioKit did not start!")
         }
+    }
+    
+    @objc private func settingsDidChange() {
+        loadSavedSettings()
+        try? AudioKit.stop()
+        audioSetup()
+        updateSound()
     }
     
     //Booleans declared and initialized to represent if key is up or down
