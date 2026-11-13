@@ -19,5 +19,13 @@ trap 'rm -rf "$tmp"' EXIT
   echo '}'
   cat "$here/tests.swift"
 } > "$tmp/main.swift"
-swiftc "$tmp/main.swift" -o "$tmp/check" 2>&1 | grep -v 'warning:' || true
+# Foundation-only app files the tests also use (no UIKit/AudioKit)
+models=()
+for f in SaxSettings.swift FingeringChart.swift NoteDisplay.swift; do
+  [ -f "$root/VEWI/$f" ] && models+=("$root/VEWI/$f")
+done
+for t in "$here"/tests_*.swift; do [ -f "$t" ] && cat "$t" >> "$tmp/main.swift"; done
+echo 'print(failures == 0 ? "ALL PASS" : "\(failures) FAILED")' >> "$tmp/main.swift"
+echo 'exit(failures == 0 ? 0 : 1)' >> "$tmp/main.swift"
+swiftc "$tmp/main.swift" "${models[@]}" -o "$tmp/check" 2>&1 | grep -v 'warning:' || true
 "$tmp/check"

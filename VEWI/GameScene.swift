@@ -81,6 +81,9 @@ class GameScene: SKScene {
     
     var oscillator: AKOscillator!
     
+    //Called with the current note (semitones from written C4, -1 = silent) whenever the keys change
+    var onNoteChange: ((Int) -> Void)?
+    
     var mixer = AKMixer()
     
     override func didMove(to view: SKView) {
@@ -101,6 +104,10 @@ class GameScene: SKScene {
         loadSavedSettings() //apply saved transposition, octave and waveform before the oscillator is built
         
         audioSetup()
+        
+        //Rebuild the sound when settings change (the waveform can only be set when the oscillator is created)
+        NotificationCenter.default.removeObserver(self, name: SaxSettings.didChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(settingsDidChange), name: SaxSettings.didChangeNotification, object: nil)
         
         /*
         let vc = ViewController(nibName: "ViewController", bundle: nil)
@@ -143,7 +150,7 @@ class GameScene: SKScene {
         oscillator = AKOscillator(waveform: waveformValue) //Initializes oscillator and sets waveform
         
         mixer = AKMixer(oscillator)
-        mixer.volume = 1
+        mixer.volume = volumeValue
         AudioKit.output = mixer
         AKSettings.playbackWhileMuted = true //Allows AudioKit to play regardless of mute switch
         do {
@@ -157,6 +164,13 @@ class GameScene: SKScene {
         }
     }
     
+    @objc private func settingsDidChange() {
+        loadSavedSettings()
+        try? AudioKit.stop()
+        audioSetup()
+        updateSound()
+    }
+    
     //Booleans declared and initialized to represent if key is up or down
     //Extra element at index 0 so that array index starts at 1 and goes to 10 for readability and consistency
     var blnKey = [false, false, false, false, false, false, false, false, false, false, false] //change this to a loop
@@ -165,7 +179,9 @@ class GameScene: SKScene {
     
     //Whenever any key is changed, this method is called to change the pitch accordingly
     func updateSound() {
-        oscillator.frequency = finalPitch(saxNote: getSaxNote())
+        let note = getSaxNote()
+        oscillator.frequency = finalPitch(saxNote: note)
+        onNoteChange?(note)
         
         //prints key presses to console for debugging
         for n in 1...10{
