@@ -20,9 +20,10 @@ class SettingsViewController: UITableViewController {
     private let volumeSlider = UISlider()
     private let rampSlider = UISlider()
     private let chartSwitch = UISwitch()
+    private let noteNameSwitch = UISwitch()
 
     private enum Row {
-        case transposition, octave, waveform, volume, ramp, chart, reset
+        case transposition, octave, waveform, volume, ramp, noteName, chart, reset
     }
 
     private struct Section {
@@ -39,8 +40,8 @@ class SettingsViewController: UITableViewController {
                 footer: "Glide is how long the pitch takes to slide from one note to the next.",
                 rows: [.waveform, .volume, .ramp]),
         Section(title: "Practice",
-                footer: "Adds a Chart button to the playing screen.",
-                rows: [.chart]),
+                footer: "Note name shows the note you're fingering and its pitch while you play. Fingering chart adds a Chart button to the playing screen.",
+                rows: [.noteName, .chart]),
         Section(title: nil, footer: nil, rows: [.reset])
     ]
 
@@ -70,6 +71,7 @@ class SettingsViewController: UITableViewController {
         rampSlider.addTarget(self, action: #selector(rampChanged(_:)), for: .valueChanged)
 
         chartSwitch.addTarget(self, action: #selector(chartChanged(_:)), for: .valueChanged)
+        noteNameSwitch.addTarget(self, action: #selector(noteNameChanged(_:)), for: .valueChanged)
 
         buildCells()
         syncControls()
@@ -91,6 +93,7 @@ class SettingsViewController: UITableViewController {
         cells[.waveform] = cell("Wave", accessory: waveformControl)
         cells[.volume] = cell("Volume", accessory: volumeSlider)
         cells[.ramp] = cell("Glide", accessory: rampSlider)
+        cells[.noteName] = cell("Note name", accessory: noteNameSwitch)
         cells[.chart] = cell("Fingering chart", accessory: chartSwitch)
 
         let reset = UITableViewCell(style: .default, reuseIdentifier: nil)
@@ -108,6 +111,7 @@ class SettingsViewController: UITableViewController {
         volumeSlider.value = Float(settings.volume)
         rampSlider.value = Float(settings.rampDuration)
         chartSwitch.isOn = settings.showFingeringChart
+        noteNameSwitch.isOn = settings.showNoteName
         updateValueLabels()
     }
 
@@ -157,6 +161,11 @@ class SettingsViewController: UITableViewController {
 
     @objc private func chartChanged(_ sender: UISwitch) {
         settings.showFingeringChart = sender.isOn
+        persist()
+    }
+
+    @objc private func noteNameChanged(_ sender: UISwitch) {
+        settings.showNoteName = sender.isOn
         persist()
     }
 

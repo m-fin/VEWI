@@ -28,12 +28,13 @@ class LaunchViewController: UIViewController {
 
         let play = makeButton("Play", action: #selector(playTapped), primary: true)
         let settings = makeButton("Settings", action: #selector(settingsTapped), primary: false)
+        let chart = makeButton("Fingering Chart", action: #selector(chartTapped), primary: false)
 
         stack.axis = .vertical
         stack.alignment = .fill
         stack.spacing = 16
         stack.translatesAutoresizingMaskIntoConstraints = false
-        for v in [titleLabel, subtitle, quickStart, play, settings] as [UIView] {
+        for v in [titleLabel, subtitle, quickStart, play, settings, chart] as [UIView] {
             stack.addArrangedSubview(v)
         }
         view.addSubview(stack)
@@ -44,7 +45,8 @@ class LaunchViewController: UIViewController {
             stack.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 32),
             stack.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -32),
             play.heightAnchor.constraint(equalToConstant: 52),
-            settings.heightAnchor.constraint(equalToConstant: 52)
+            settings.heightAnchor.constraint(equalToConstant: 52),
+            chart.heightAnchor.constraint(equalToConstant: 52)
         ])
     }
 
@@ -79,6 +81,10 @@ class LaunchViewController: UIViewController {
 
     @objc private func settingsTapped() {
         navigationController?.pushViewController(SettingsViewController(style: .grouped), animated: true)
+    }
+
+    @objc private func chartTapped() {
+        navigationController?.pushViewController(FingeringChartViewController(style: .grouped), animated: true)
     }
 
     // MARK: - Helpers

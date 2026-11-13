@@ -56,6 +56,7 @@ struct SaxSettings: Equatable {
     var volume: Double = 1.0            //0...1
     var rampDuration: Double = 0.05     //seconds, 0...1 (glide between notes)
     var showFingeringChart: Bool = false
+    var showNoteName: Bool = true       //note name + pitch at the top of the playing screen
 
     static let octaveRange = -2...2
 
@@ -67,6 +68,7 @@ struct SaxSettings: Equatable {
         static let volume = "Volume_Value"
         static let rampDuration = "Ramp_Duration_Value"
         static let showFingeringChart = "Show_Fingering_Chart"
+        static let showNoteName = "Show_Note_Name"
     }
 
     //Posted after settings are saved so the playing screen can update its sound
@@ -80,6 +82,7 @@ struct SaxSettings: Equatable {
         if defaults.object(forKey: Keys.volume) != nil { s.volume = defaults.double(forKey: Keys.volume) }
         if defaults.object(forKey: Keys.rampDuration) != nil { s.rampDuration = defaults.double(forKey: Keys.rampDuration) }
         s.showFingeringChart = defaults.bool(forKey: Keys.showFingeringChart)
+        if defaults.object(forKey: Keys.showNoteName) != nil { s.showNoteName = defaults.bool(forKey: Keys.showNoteName) }
         return s.clamped()
     }
 
@@ -91,6 +94,7 @@ struct SaxSettings: Equatable {
         defaults.set(s.volume, forKey: Keys.volume)
         defaults.set(s.rampDuration, forKey: Keys.rampDuration)
         defaults.set(s.showFingeringChart, forKey: Keys.showFingeringChart)
+        defaults.set(s.showNoteName, forKey: Keys.showNoteName)
     }
 
     //Keeps every value in its allowed range

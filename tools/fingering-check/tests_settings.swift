@@ -13,10 +13,10 @@ defaults.set(-1.0, forKey: "Octave_Value")
 defaults.set(3, forKey: "Waveform_Value_Index")
 let legacy = SaxSettings.load(from: defaults)
 check(legacy.transposition == .eb && legacy.octaveShift == -1 && legacy.waveform == .triangle, "old keys: Eb, octave -1, triangle")
-check(legacy.volume == 1.0 && legacy.rampDuration == 0.05 && !legacy.showFingeringChart, "missing new keys use defaults")
+check(legacy.volume == 1.0 && legacy.rampDuration == 0.05 && !legacy.showFingeringChart && legacy.showNoteName, "missing new keys use defaults")
 
 var s = SaxSettings()
-s.transposition = .bb; s.octaveShift = 1; s.waveform = .square; s.volume = 0.4; s.rampDuration = 0.2; s.showFingeringChart = true
+s.transposition = .bb; s.octaveShift = 1; s.waveform = .square; s.volume = 0.4; s.rampDuration = 0.2; s.showFingeringChart = true; s.showNoteName = false
 s.save(to: defaults)
 check(SaxSettings.load(from: defaults) == s, "save then load round-trips")
 
