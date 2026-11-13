@@ -24,6 +24,9 @@
 		D227FFDFDD45160DD55FDEBA /* SaxSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127FFDFDD45160DD55FDEBA /* SaxSettings.swift */; };
 		D2AF5E549C24FF8A39A01BF9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF5E549C24FF8A39A01BF9 /* SettingsViewController.swift */; };
 		D29D6CF7C5F280F5D3268C8C /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19D6CF7C5F280F5D3268C8C /* LaunchViewController.swift */; };
+		D20372B23413EBD989A68D1F /* NoteDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10372B23413EBD989A68D1F /* NoteDisplay.swift */; };
+		D23C3336385C93019D3D0C43 /* FingeringChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13C3336385C93019D3D0C43 /* FingeringChart.swift */; };
+		D2D5E960E60C162066BA7C24 /* FingeringChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5E960E60C162066BA7C24 /* FingeringChartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		D127FFDFDD45160DD55FDEBA /* SaxSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaxSettings.swift; sourceTree = "<group>"; };
 		D1AF5E549C24FF8A39A01BF9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D19D6CF7C5F280F5D3268C8C /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		D10372B23413EBD989A68D1F /* NoteDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDisplay.swift; sourceTree = "<group>"; };
+		D13C3336385C93019D3D0C43 /* FingeringChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingeringChart.swift; sourceTree = "<group>"; };
+		D1D5E960E60C162066BA7C24 /* FingeringChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingeringChartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,9 @@
 				C9CDCCC422AA14FD002977F2 /* GameViewController.swift */,
 				C9CDCCC622AA14FD002977F2 /* Main.storyboard */,
 				C9BC4D3D22ACBA6800FACFA1 /* ViewController.swift */,
+				D1D5E960E60C162066BA7C24 /* FingeringChartViewController.swift */,
+				D13C3336385C93019D3D0C43 /* FingeringChart.swift */,
+				D10372B23413EBD989A68D1F /* NoteDisplay.swift */,
 				D19D6CF7C5F280F5D3268C8C /* LaunchViewController.swift */,
 				D1AF5E549C24FF8A39A01BF9 /* SettingsViewController.swift */,
 				D127FFDFDD45160DD55FDEBA /* SaxSettings.swift */,
@@ -306,6 +315,9 @@
 				C9CDCCC322AA14FD002977F2 /* GameScene.swift in Sources */,
 				C9CDCCC522AA14FD002977F2 /* GameViewController.swift in Sources */,
 				C9BC4D3E22ACBA6800FACFA1 /* ViewController.swift in Sources */,
+				D2D5E960E60C162066BA7C24 /* FingeringChartViewController.swift in Sources */,
+				D23C3336385C93019D3D0C43 /* FingeringChart.swift in Sources */,
+				D20372B23413EBD989A68D1F /* NoteDisplay.swift in Sources */,
 				D29D6CF7C5F280F5D3268C8C /* LaunchViewController.swift in Sources */,
 				D2AF5E549C24FF8A39A01BF9 /* SettingsViewController.swift in Sources */,
 				D227FFDFDD45160DD55FDEBA /* SaxSettings.swift in Sources */,

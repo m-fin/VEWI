@@ -81,6 +81,9 @@ class GameScene: SKScene {
     
     var oscillator: AKOscillator!
     
+    //Called with the current note (semitones from written C4, -1 = silent) whenever the keys change
+    var onNoteChange: ((Int) -> Void)?
+    
     var mixer = AKMixer()
     
     override func didMove(to view: SKView) {
@@ -176,7 +179,9 @@ class GameScene: SKScene {
     
     //Whenever any key is changed, this method is called to change the pitch accordingly
     func updateSound() {
-        oscillator.frequency = finalPitch(saxNote: getSaxNote())
+        let note = getSaxNote()
+        oscillator.frequency = finalPitch(saxNote: note)
+        onNoteChange?(note)
         
         //prints key presses to console for debugging
         for n in 1...10{
