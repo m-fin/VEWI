@@ -1,0 +1,21 @@
+name: Fingering check
+on:
+  pull_request:
+  push:
+    branches: [master]
+permissions:
+  contents: read
+jobs:
+  notes:
+    # Ubuntu runner images ship a Swift toolchain, so no Xcode, simulator or AudioKit is needed:
+    # check.sh compiles the note logic out of GameScene.swift and runs the expected-note tests.
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: swift --version
+      - name: Run tools/fingering-check/check.sh
+        run: |
+          set -o pipefail
+          ./tools/fingering-check/check.sh | tee check.log
+          grep -q '^ALL PASS$' check.log
