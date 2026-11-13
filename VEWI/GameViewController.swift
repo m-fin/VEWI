@@ -70,12 +70,6 @@ class GameViewController: UIViewController {
         return false
     }
 
-    //The storyboard's settings button opens the settings screen built in code (SettingsViewController)
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        navigationController?.pushViewController(SettingsViewController(style: .grouped), animated: true)
-        return false
-    }
-
     override var shouldAutorotate: Bool {
         return true
     }
