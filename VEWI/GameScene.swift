@@ -221,8 +221,8 @@ class GameScene: SKScene {
         else if (blnKey[1] && blnKey[2] && !blnKey[3] && !blnKey[6] && !blnKey[7] && blnKey[8]) {
             return 21
         }
-        //G#/Ab
-        else if (blnKey[1] && blnKey[2] && blnKey[3] && blnKey[4] && !blnKey[6] && !blnKey[7] && blnKey[8]) {
+        //G#/Ab (either G# key, same as the low G#/Ab below)
+        else if (blnKey[1] && blnKey[2] && blnKey[3] && (blnKey[4] || blnKey[5]) && !blnKey[6] && !blnKey[7] && blnKey[8]) {
             return 20
         }
         //G
