@@ -98,6 +98,8 @@ class GameScene: SKScene {
         
         arrKey = [key1, key2, key3, key4, key5, key6, key7, key8, key9, key10]
         
+        loadSavedSettings() //apply saved transposition, octave and waveform before the oscillator is built
+        
         audioSetup()
         
         /*
@@ -315,17 +317,9 @@ class GameScene: SKScene {
     func finalPitch(saxNote: Int) -> Double {
         //let octave = 0 //implement later for user control
         var finalNote: Double
-        var fundamentalPitch = 0.00
-        
-        if (transpositionValue == 0) {
-            fundamentalPitch = 261.63
-        }
-        else if (transpositionValue == -2) {
-            fundamentalPitch = 233.08
-        }
-        else if (transpositionValue == -9) {
-            fundamentalPitch = 311.13
-        }
+        //Concert pitch of written C4: C4 (261.63 Hz) moved by the transposition in semitones
+        //C: 0 -> 261.63 Hz, Bb: -2 -> 233.08 Hz, Eb (alto): -9 -> 155.56 Hz
+        let fundamentalPitch = 261.63 * pow(2.0, Double(transpositionValue) / 12.0)
         
         if (saxNote >= 0) { //Condense this into one statement!!!
             

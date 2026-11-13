@@ -17,6 +17,33 @@ var octaveModifierValue = 0.0
 var waveformValue: AKTable = sine
 var rampDuration = 0.05
 
+//Maps the settings controls to values, shared by the settings screen and app launch
+func transpositionSemitones(forSegment index: Int) -> Int {
+    switch index {
+    case 1: return -2 //Bb
+    case 2: return -9 //Eb
+    default: return 0 //C
+    }
+}
+
+func waveform(forSegment index: Int) -> AKTable {
+    switch index {
+    case 1: return sawtooth
+    case 2: return square
+    case 3: return triangle
+    default: return sine
+    }
+}
+
+//Loads the saved settings into the globals the instrument plays with.
+//Without this the settings screen showed the saved choices, but the sound used the defaults until they were changed again.
+func loadSavedSettings() {
+    let defaults = UserDefaults.standard
+    transpositionValue = transpositionSemitones(forSegment: defaults.integer(forKey: "Transposition_Value_Index"))
+    octaveModifierValue = defaults.double(forKey: "Octave_Value")
+    waveformValue = waveform(forSegment: defaults.integer(forKey: "Waveform_Value_Index"))
+}
+
 class ViewController: UITableViewController {
     
     var GameScene:GameScene?
@@ -46,21 +73,7 @@ class ViewController: UITableViewController {
     @IBOutlet weak var segTransposition: UISegmentedControl!
     
     @IBAction func segTranspositionValueChanged(_ sender: UISegmentedControl) {
-        //C
-        if (segTransposition.selectedSegmentIndex == 0) {
-            transpositionValue = 0
-        }
-        //Bb
-        else if (segTransposition.selectedSegmentIndex == 1) {
-            transpositionValue = -2
-        }
-        //Eb
-        else if (segTransposition.selectedSegmentIndex == 2) {
-            transpositionValue = -9
-        }
-        else {
-            transpositionValue = 0
-        }
+        transpositionValue = transpositionSemitones(forSegment: segTransposition.selectedSegmentIndex)
         
         UserDefaults.standard.set(segTransposition.selectedSegmentIndex, forKey: "Transposition_Value_Index")
         
