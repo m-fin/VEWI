@@ -41,6 +41,27 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+        
+        addMenuButton()
+    }
+    
+    //Small button back to the start page (the navigation bar is hidden while playing)
+    private func addMenuButton() {
+        let menu = UIButton(type: .system)
+        menu.setTitle("\u{2039} Menu", for: .normal)
+        menu.setTitleColor(.white, for: .normal)
+        menu.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        menu.translatesAutoresizingMaskIntoConstraints = false
+        menu.addTarget(self, action: #selector(menuTapped), for: .touchUpInside)
+        view.addSubview(menu)
+        NSLayoutConstraint.activate([
+            menu.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            menu.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12)
+        ])
+    }
+    
+    @objc private func menuTapped() {
+        navigationController?.popViewController(animated: true)
     }
 
     //The storyboard's settings button opens the settings screen built in code (SettingsViewController)

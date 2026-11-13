@@ -16,6 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //Show the start page first. Main.storyboard's navigation controller starts on the playing screen;
+        //keep that screen and open it from the start page's Play button.
+        if let nav = window?.rootViewController as? UINavigationController, let game = nav.viewControllers.first {
+            let launch = LaunchViewController()
+            launch.gameViewController = game
+            nav.setViewControllers([launch], animated: false)
+        }
         return true
     }
 
