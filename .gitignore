@@ -1,1 +1,11 @@
-./VEWI/AudioKit-iOS
+# Local AudioKit frameworks (added in Xcode; not part of this repo)
+VEWI/AudioKit-iOS/
+
+# macOS Finder and vim swap files
+.DS_Store
+*.swp
+*.swo
+
+# Xcode per-user state and local build products
+xcuserdata/
+DerivedData/
