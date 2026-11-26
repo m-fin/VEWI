@@ -8,13 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C98B8D3222B6DFDE003EDC63 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C98B8D3122B6DFDE003EDC63 /* Default-568h@2x.png */; };
-		C98B8D3522B6E027003EDC63 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C98B8D3322B6E027003EDC63 /* AudioKit.framework */; };
-		C98B8D3622B6E027003EDC63 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C98B8D3422B6E027003EDC63 /* AudioKitUI.framework */; };
 		C9BC4D3E22ACBA6800FACFA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BC4D3D22ACBA6800FACFA1 /* ViewController.swift */; };
 		C9CDCCBD22AA14FD002977F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CDCCBC22AA14FD002977F2 /* AppDelegate.swift */; };
 		C9CDCCBF22AA14FD002977F2 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C9CDCCBE22AA14FD002977F2 /* GameScene.sks */; };
 		C9CDCCC122AA14FD002977F2 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = C9CDCCC022AA14FD002977F2 /* Actions.sks */; };
-		C9CDCCC322AA14FD002977F2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CDCCC222AA14FD002977F2 /* GameScene.swift */; };
 		C9CDCCC522AA14FD002977F2 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CDCCC422AA14FD002977F2 /* GameViewController.swift */; };
 		C9CDCCC822AA14FD002977F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9CDCCC622AA14FD002977F2 /* Main.storyboard */; };
 		C9CDCCCA22AA14FD002977F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9CDCCC922AA14FD002977F2 /* Assets.xcassets */; };
@@ -27,6 +24,24 @@
 		D20372B23413EBD989A68D1F /* NoteDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10372B23413EBD989A68D1F /* NoteDisplay.swift */; };
 		D23C3336385C93019D3D0C43 /* FingeringChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13C3336385C93019D3D0C43 /* FingeringChart.swift */; };
 		D2D5E960E60C162066BA7C24 /* FingeringChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5E960E60C162066BA7C24 /* FingeringChartViewController.swift */; };
+		A20000000000000000000001 /* SaxKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000001 /* SaxKey.swift */; };
+		A20000000000000000000002 /* FingeringEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000002 /* FingeringEngine.swift */; };
+		A20000000000000000000003 /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000003 /* Pitch.swift */; };
+		A20000000000000000000004 /* SynthDSP.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000004 /* SynthDSP.swift */; };
+		A20000000000000000000005 /* SaxSynth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000005 /* SaxSynth.swift */; };
+		A20000000000000000000006 /* SaxKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000006 /* SaxKeyboardView.swift */; };
+		A20000000000000000000007 /* DailyFingering.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000007 /* DailyFingering.swift */; };
+		A20000000000000000000008 /* BreathState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000008 /* BreathState.swift */; };
+		A20000000000000000000009 /* SaxLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000009 /* SaxLayout.swift */; };
+		A20000000000000000000010 /* VEWIWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000010 /* VEWIWidget.swift */; };
+		A20000000000000000000011 /* SaxKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000001 /* SaxKey.swift */; };
+		A20000000000000000000012 /* FingeringChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13C3336385C93019D3D0C43 /* FingeringChart.swift */; };
+		A20000000000000000000013 /* NoteDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10372B23413EBD989A68D1F /* NoteDisplay.swift */; };
+		A20000000000000000000014 /* DailyFingering.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000007 /* DailyFingering.swift */; };
+		A20000000000000000000015 /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000003 /* Pitch.swift */; };
+		A20000000000000000000018 /* SaxSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127FFDFDD45160DD55FDEBA /* SaxSettings.swift */; };
+		A20000000000000000000019 /* BreathState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000008 /* BreathState.swift */; };
+		A20000000000000000000030 /* VEWIWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A10000000000000000000012 /* VEWIWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,20 +59,22 @@
 			remoteGlobalIDString = C9CDCCB822AA14FD002977F2;
 			remoteInfo = "VirtualSax-Beta1";
 		};
+		A3000000000000000000000B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9CDCCB122AA14FD002977F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A30000000000000000000001;
+			remoteInfo = VEWIWidget;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C92D8B5822AAB52500365329 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKitUI.framework; path = "VirtualSax-Beta1/AudioKit-iOS/AudioKitUI.framework"; sourceTree = "<group>"; };
-		C92D8B5922AAB52500365329 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "VirtualSax-Beta1/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
 		C98B8D3122B6DFDE003EDC63 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		C98B8D3322B6E027003EDC63 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "VEWI/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
-		C98B8D3422B6E027003EDC63 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKitUI.framework; path = "VEWI/AudioKit-iOS/AudioKitUI.framework"; sourceTree = "<group>"; };
 		C9BC4D3D22ACBA6800FACFA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C9CDCCB922AA14FD002977F2 /* VEWI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VEWI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CDCCBC22AA14FD002977F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9CDCCBE22AA14FD002977F2 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		C9CDCCC022AA14FD002977F2 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		C9CDCCC222AA14FD002977F2 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		C9CDCCC422AA14FD002977F2 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		C9CDCCC722AA14FD002977F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C9CDCCC922AA14FD002977F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,6 +92,18 @@
 		D10372B23413EBD989A68D1F /* NoteDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDisplay.swift; sourceTree = "<group>"; };
 		D13C3336385C93019D3D0C43 /* FingeringChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingeringChart.swift; sourceTree = "<group>"; };
 		D1D5E960E60C162066BA7C24 /* FingeringChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingeringChartViewController.swift; sourceTree = "<group>"; };
+		A10000000000000000000001 /* SaxKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaxKey.swift; sourceTree = "<group>"; };
+		A10000000000000000000002 /* FingeringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingeringEngine.swift; sourceTree = "<group>"; };
+		A10000000000000000000003 /* Pitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch.swift; sourceTree = "<group>"; };
+		A10000000000000000000004 /* SynthDSP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynthDSP.swift; sourceTree = "<group>"; };
+		A10000000000000000000005 /* SaxSynth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaxSynth.swift; sourceTree = "<group>"; };
+		A10000000000000000000006 /* SaxKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaxKeyboardView.swift; sourceTree = "<group>"; };
+		A10000000000000000000007 /* DailyFingering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFingering.swift; sourceTree = "<group>"; };
+		A10000000000000000000008 /* BreathState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathState.swift; sourceTree = "<group>"; };
+		A10000000000000000000009 /* SaxLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaxLayout.swift; sourceTree = "<group>"; };
+		A10000000000000000000010 /* VEWIWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VEWIWidget.swift; sourceTree = "<group>"; };
+		A10000000000000000000011 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10000000000000000000012 /* VEWIWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VEWIWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +111,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C98B8D3522B6E027003EDC63 /* AudioKit.framework in Frameworks */,
-				C98B8D3622B6E027003EDC63 /* AudioKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,16 +128,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A30000000000000000000003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		C92D8B5722AAB52500365329 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C98B8D3322B6E027003EDC63 /* AudioKit.framework */,
-				C98B8D3422B6E027003EDC63 /* AudioKitUI.framework */,
-				C92D8B5922AAB52500365329 /* AudioKit.framework */,
-				C92D8B5822AAB52500365329 /* AudioKitUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -120,6 +150,7 @@
 			children = (
 				C98B8D3122B6DFDE003EDC63 /* Default-568h@2x.png */,
 				C9CDCCBB22AA14FD002977F2 /* VEWI */,
+				A3000000000000000000000C /* VEWIWidget */,
 				C9CDCCD622AA14FD002977F2 /* VEWITests */,
 				C9CDCCE122AA14FD002977F2 /* VEWIUITests */,
 				C9CDCCBA22AA14FD002977F2 /* Products */,
@@ -131,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				C9CDCCB922AA14FD002977F2 /* VEWI.app */,
+				A10000000000000000000012 /* VEWIWidget.appex */,
 				C9CDCCD322AA14FD002977F2 /* VEWITests.xctest */,
 				C9CDCCDE22AA14FD002977F2 /* VEWIUITests.xctest */,
 			);
@@ -143,7 +175,6 @@
 				C9CDCCBC22AA14FD002977F2 /* AppDelegate.swift */,
 				C9CDCCBE22AA14FD002977F2 /* GameScene.sks */,
 				C9CDCCC022AA14FD002977F2 /* Actions.sks */,
-				C9CDCCC222AA14FD002977F2 /* GameScene.swift */,
 				C9CDCCC422AA14FD002977F2 /* GameViewController.swift */,
 				C9CDCCC622AA14FD002977F2 /* Main.storyboard */,
 				C9BC4D3D22ACBA6800FACFA1 /* ViewController.swift */,
@@ -153,6 +184,15 @@
 				D19D6CF7C5F280F5D3268C8C /* LaunchViewController.swift */,
 				D1AF5E549C24FF8A39A01BF9 /* SettingsViewController.swift */,
 				D127FFDFDD45160DD55FDEBA /* SaxSettings.swift */,
+				A10000000000000000000001 /* SaxKey.swift */,
+				A10000000000000000000002 /* FingeringEngine.swift */,
+				A10000000000000000000003 /* Pitch.swift */,
+				A10000000000000000000004 /* SynthDSP.swift */,
+				A10000000000000000000005 /* SaxSynth.swift */,
+				A10000000000000000000006 /* SaxKeyboardView.swift */,
+				A10000000000000000000007 /* DailyFingering.swift */,
+				A10000000000000000000008 /* BreathState.swift */,
+				A10000000000000000000009 /* SaxLayout.swift */,
 				C9CDCCC922AA14FD002977F2 /* Assets.xcassets */,
 				C9CDCCCB22AA14FD002977F2 /* LaunchScreen.storyboard */,
 				C9CDCCCE22AA14FD002977F2 /* Info.plist */,
@@ -178,6 +218,15 @@
 			path = VEWIUITests;
 			sourceTree = "<group>";
 		};
+		A3000000000000000000000C /* VEWIWidget */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000010 /* VEWIWidget.swift */,
+				A10000000000000000000011 /* Info.plist */,
+			);
+			path = VEWIWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,10 +237,12 @@
 				C9CDCCB522AA14FD002977F2 /* Sources */,
 				C9CDCCB622AA14FD002977F2 /* Frameworks */,
 				C9CDCCB722AA14FD002977F2 /* Resources */,
+				A30000000000000000000008 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A3000000000000000000000A /* PBXTargetDependency */,
 			);
 			name = VEWI;
 			productName = "VirtualSax-Beta1";
@@ -234,6 +285,23 @@
 			productReference = C9CDCCDE22AA14FD002977F2 /* VEWIUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		A30000000000000000000001 /* VEWIWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A30000000000000000000005 /* Build configuration list for PBXNativeTarget "VEWIWidget" */;
+			buildPhases = (
+				A30000000000000000000002 /* Sources */,
+				A30000000000000000000003 /* Frameworks */,
+				A30000000000000000000004 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VEWIWidget;
+			productName = VEWIWidget;
+			productReference = A10000000000000000000012 /* VEWIWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -255,6 +323,9 @@
 						CreatedOnToolsVersion = 10.2;
 						TestTargetID = C9CDCCB822AA14FD002977F2;
 					};
+					A30000000000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
 				};
 			};
 			buildConfigurationList = C9CDCCB422AA14FD002977F2 /* Build configuration list for PBXProject "VEWI" */;
@@ -271,11 +342,26 @@
 			projectRoot = "";
 			targets = (
 				C9CDCCB822AA14FD002977F2 /* VEWI */,
+				A30000000000000000000001 /* VEWIWidget */,
 				C9CDCCD222AA14FD002977F2 /* VEWITests */,
 				C9CDCCDD22AA14FD002977F2 /* VEWIUITests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A30000000000000000000008 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A20000000000000000000030 /* VEWIWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C9CDCCB722AA14FD002977F2 /* Resources */ = {
@@ -305,6 +391,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A30000000000000000000004 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -312,7 +405,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9CDCCC322AA14FD002977F2 /* GameScene.swift in Sources */,
 				C9CDCCC522AA14FD002977F2 /* GameViewController.swift in Sources */,
 				C9BC4D3E22ACBA6800FACFA1 /* ViewController.swift in Sources */,
 				D2D5E960E60C162066BA7C24 /* FingeringChartViewController.swift in Sources */,
@@ -322,6 +414,15 @@
 				D2AF5E549C24FF8A39A01BF9 /* SettingsViewController.swift in Sources */,
 				D227FFDFDD45160DD55FDEBA /* SaxSettings.swift in Sources */,
 				C9CDCCBD22AA14FD002977F2 /* AppDelegate.swift in Sources */,
+				A20000000000000000000001 /* SaxKey.swift in Sources */,
+				A20000000000000000000002 /* FingeringEngine.swift in Sources */,
+				A20000000000000000000003 /* Pitch.swift in Sources */,
+				A20000000000000000000004 /* SynthDSP.swift in Sources */,
+				A20000000000000000000005 /* SaxSynth.swift in Sources */,
+				A20000000000000000000006 /* SaxKeyboardView.swift in Sources */,
+				A20000000000000000000007 /* DailyFingering.swift in Sources */,
+				A20000000000000000000008 /* BreathState.swift in Sources */,
+				A20000000000000000000009 /* SaxLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +442,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A30000000000000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A20000000000000000000010 /* VEWIWidget.swift in Sources */,
+				A20000000000000000000011 /* SaxKey.swift in Sources */,
+				A20000000000000000000012 /* FingeringChart.swift in Sources */,
+				A20000000000000000000013 /* NoteDisplay.swift in Sources */,
+				A20000000000000000000014 /* DailyFingering.swift in Sources */,
+				A20000000000000000000015 /* Pitch.swift in Sources */,
+				A20000000000000000000018 /* SaxSettings.swift in Sources */,
+				A20000000000000000000019 /* BreathState.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -353,6 +469,11 @@
 			isa = PBXTargetDependency;
 			target = C9CDCCB822AA14FD002977F2 /* VEWI */;
 			targetProxy = C9CDCCDF22AA14FD002977F2 /* PBXContainerItemProxy */;
+		};
+		A3000000000000000000000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A30000000000000000000001 /* VEWIWidget */;
+			targetProxy = A3000000000000000000000B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -427,7 +548,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -482,7 +603,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -498,17 +619,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FFH3H8K6FB;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/VirtualSax-Beta1/AudioKit-iOS",
-					"$(PROJECT_DIR)/VEWI/AudioKit-iOS",
-				);
 				INFOPLIST_FILE = "$(SRCROOT)/VEWI/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matthewfinley.VirtualSax-Beta1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -522,17 +637,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FFH3H8K6FB;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/VirtualSax-Beta1/AudioKit-iOS",
-					"$(PROJECT_DIR)/VEWI/AudioKit-iOS",
-				);
 				INFOPLIST_FILE = "$(SRCROOT)/VEWI/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matthewfinley.VirtualSax-Beta1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -546,7 +655,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "VirtualSax-Beta1Tests/Info.plist";
+				INFOPLIST_FILE = VEWITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -566,7 +675,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "VirtualSax-Beta1Tests/Info.plist";
+				INFOPLIST_FILE = VEWITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -585,7 +694,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "VirtualSax-Beta1UITests/Info.plist";
+				INFOPLIST_FILE = VEWIUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -595,7 +704,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "VirtualSax-Beta1";
+				TEST_TARGET_NAME = VEWI;
 			};
 			name = Debug;
 		};
@@ -604,7 +713,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "VirtualSax-Beta1UITests/Info.plist";
+				INFOPLIST_FILE = VEWIUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -614,7 +723,51 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "VirtualSax-Beta1";
+				TEST_TARGET_NAME = VEWI;
+			};
+			name = Release;
+		};
+		A30000000000000000000006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FFH3H8K6FB;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VEWIWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.matthewfinley.VirtualSax-Beta1.VEWIWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A30000000000000000000007 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FFH3H8K6FB;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VEWIWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.matthewfinley.VirtualSax-Beta1.VEWIWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -653,6 +806,15 @@
 			buildConfigurations = (
 				C9CDCCEE22AA14FD002977F2 /* Debug */,
 				C9CDCCEF22AA14FD002977F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A30000000000000000000005 /* Build configuration list for PBXNativeTarget "VEWIWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A30000000000000000000006 /* Debug */,
+				A30000000000000000000007 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

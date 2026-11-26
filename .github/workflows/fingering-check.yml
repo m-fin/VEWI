@@ -7,8 +7,8 @@ permissions:
   contents: read
 jobs:
   notes:
-    # Ubuntu runner images ship a Swift toolchain, so no Xcode, simulator or AudioKit is needed:
-    # check.sh compiles the note logic out of GameScene.swift and runs the expected-note tests.
+    # Ubuntu runner images ship a Swift toolchain, so no Xcode or simulator is needed.
+    # check.sh compiles the Foundation fingering model and checks every alto fingering.
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

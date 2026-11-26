@@ -2,63 +2,96 @@
 //  FingeringChart.swift
 //  VEWI
 //
-//  Every fingering the app understands, written pitch -> keys to hold.
-//  tools/fingering-check plays each one through getSaxNote() to keep this in sync.
-//  Keys 1-5 are the left column, 6-10 the right column (key 1 / key 6 at the bottom).
+//  Every real alto fingering VEWI plays, from written B♭3 to F♯6.
+//  The fingering harness plays each one through FingeringEngine.
 //
 
 import Foundation
 
-struct Fingering {
-    let note: Int       //semitones from written C4
-    let keys: [Int]     //1-10
-    let label: String?  //e.g. "alternate"
+struct Fingering: Equatable {
+    var note: Int
+    var keys: [SaxKey]
+    var label: String?
+    var section: Section
+
+    enum Section: String, CaseIterable {
+        case low = "Low register · B♭3–C♯5"
+        case octave = "Octave key · D5–C♯6"
+        case palm = "Palm keys · D6–F♯6"
+    }
 }
 
 enum FingeringChart {
+    /// First register, including the alternates a player actually uses.
     static let low: [Fingering] = [
-        Fingering(note: 0, keys: [6, 7, 8, 10], label: nil),
-        Fingering(note: 1, keys: [4, 6, 7, 8, 10], label: nil),
-        Fingering(note: 2, keys: [6, 7, 8], label: nil),
-        Fingering(note: 3, keys: [6, 7, 8, 9], label: nil),
-        Fingering(note: 4, keys: [6, 7], label: nil),
-        Fingering(note: 5, keys: [6], label: nil),
-        Fingering(note: 6, keys: [7], label: nil),
-        Fingering(note: 7, keys: [1, 2, 3], label: nil),
-        Fingering(note: 8, keys: [1, 2, 3, 4], label: nil),
-        Fingering(note: 9, keys: [1, 2], label: nil),
-        Fingering(note: 10, keys: [1, 6], label: nil),
-        Fingering(note: 10, keys: [1, 2, 6], label: "alternate"),
-        Fingering(note: 11, keys: [1], label: nil),
-        Fingering(note: 12, keys: [2], label: nil),
-        Fingering(note: 13, keys: [3], label: nil)
+        Fingering(note: -2, keys: [.l1, .l2, .l3, .r1, .r2, .r3, .lowBFlat], label: nil, section: .low),
+        Fingering(note: -1, keys: [.l1, .l2, .l3, .r1, .r2, .r3, .lowB], label: nil, section: .low),
+        Fingering(note: 0, keys: [.l1, .l2, .l3, .r1, .r2, .r3, .lowC], label: nil, section: .low),
+        Fingering(note: 1, keys: [.l1, .l2, .l3, .r1, .r2, .r3, .lowCSharp], label: nil, section: .low),
+        Fingering(note: 2, keys: [.l1, .l2, .l3, .r1, .r2, .r3], label: nil, section: .low),
+        Fingering(note: 3, keys: [.l1, .l2, .l3, .r1, .r2, .r3, .lowEFlat], label: nil, section: .low),
+        Fingering(note: 4, keys: [.l1, .l2, .l3, .r1, .r2], label: nil, section: .low),
+        Fingering(note: 5, keys: [.l1, .l2, .l3, .r1], label: nil, section: .low),
+        Fingering(note: 6, keys: [.l1, .l2, .l3, .r2], label: nil, section: .low),
+        Fingering(note: 6, keys: [.l1, .l2, .l3, .r1, .chromaticFSharp], label: "chromatic", section: .low),
+        Fingering(note: 7, keys: [.l1, .l2, .l3], label: nil, section: .low),
+        Fingering(note: 8, keys: [.l1, .l2, .l3, .gSharp], label: nil, section: .low),
+        Fingering(note: 9, keys: [.l1, .l2], label: nil, section: .low),
+        Fingering(note: 10, keys: [.l1, .bis], label: nil, section: .low),
+        Fingering(note: 10, keys: [.l1, .r1], label: "1+1", section: .low),
+        Fingering(note: 10, keys: [.l1, .sideBFlat], label: "side", section: .low),
+        Fingering(note: 11, keys: [.l1], label: nil, section: .low),
+        Fingering(note: 12, keys: [.l2], label: nil, section: .low),
+        Fingering(note: 12, keys: [.l1, .sideC], label: "side", section: .low),
+        Fingering(note: 13, keys: [], label: nil, section: .low)
     ]
 
-    //Upper register: left-column notes add right key 3 (key 8), right-column notes add left key 3
-    static let high: [Fingering] = [
-        Fingering(note: 14, keys: [3, 6, 7, 8], label: nil),
-        Fingering(note: 15, keys: [3, 6, 7, 8, 9], label: nil),
-        Fingering(note: 16, keys: [3, 6, 7], label: nil),
-        Fingering(note: 17, keys: [3, 6], label: nil),
-        Fingering(note: 18, keys: [3, 7], label: nil),
-        Fingering(note: 19, keys: [1, 2, 3, 8], label: nil),
-        Fingering(note: 20, keys: [1, 2, 3, 4, 8], label: nil),
-        Fingering(note: 21, keys: [1, 2, 8], label: nil),
-        Fingering(note: 22, keys: [1, 6, 8], label: nil),
-        Fingering(note: 23, keys: [1, 8], label: nil),
-        Fingering(note: 24, keys: [2, 8], label: nil),
-        Fingering(note: 25, keys: [3, 8], label: nil),
-        Fingering(note: 26, keys: [1, 3, 8], label: nil)
+    /// Same fingerings with the octave key, from D5 to C♯6. Bell notes stay put.
+    static let octave: [Fingering] = low.filter { $0.note >= 2 }.map { fingering in
+        Fingering(note: fingering.note + 12,
+                  keys: fingering.keys + [.octave],
+                  label: fingering.label,
+                  section: .octave)
+    }
+
+    static let palm: [Fingering] = [
+        Fingering(note: 26, keys: [.octave, .l1, .l2, .l3, .r1, .r2, .r3, .palmD], label: nil, section: .palm),
+        Fingering(note: 27, keys: [.octave, .l1, .l2, .l3, .r1, .r2, .r3, .palmD, .palmEFlat], label: nil, section: .palm),
+        Fingering(note: 28, keys: [.octave, .l1, .l2, .l3, .r1, .r2, .palmD], label: nil, section: .palm),
+        Fingering(note: 28, keys: [.octave, .l1, .l2, .l3, .r1, .r2, .r3, .frontE], label: "front E", section: .palm),
+        Fingering(note: 29, keys: [.octave, .l1, .l2, .l3, .r1, .r2, .r3, .palmD, .palmEFlat, .palmF], label: nil, section: .palm),
+        Fingering(note: 29, keys: [.octave, .l1, .l2, .l3, .r1, .palmD, .palmEFlat], label: "half palm", section: .palm),
+        Fingering(note: 30, keys: [.octave, .l1, .l2, .l3, .r2, .palmD, .palmEFlat, .palmF], label: nil, section: .palm),
+        Fingering(note: 30, keys: [.octave, .l1, .l2, .l3, .r1, .chromaticFSharp, .palmD, .palmEFlat, .palmF], label: "chromatic", section: .palm)
     ]
 
-    static var all: [Fingering] { return low + high }
+    static var all: [Fingering] { return low + octave + palm }
 
-    //"Left 1 2 3  |  Right 1 2" (each column counted 1-5 from the bottom)
-    static func keyText(_ keys: [Int]) -> String {
-        let left = keys.filter { $0 >= 1 && $0 <= 5 }.sorted().map { String($0) }
-        let right = keys.filter { $0 >= 6 && $0 <= 10 }.sorted().map { String($0 - 5) }
-        let l = left.isEmpty ? "\u{2013}" : left.joined(separator: " ")
-        let r = right.isEmpty ? "\u{2013}" : right.joined(separator: " ")
-        return "Left \(l)  |  Right \(r)"
+    /// One canonical fingering per written note, for the widget and the chart's "today" pick.
+    static var daily: [Fingering] { return all.filter { $0.label == nil } }
+
+    static var sections: [(title: String, rows: [Fingering])] {
+        return Fingering.Section.allCases.map { section in
+            (section.rawValue, all.filter { $0.section == section })
+        }
+    }
+
+    static func keyText(_ keys: [SaxKey]) -> String {
+        let held = Set(keys)
+        let names = SaxKey.chartOrder.filter { held.contains($0) }.map { $0.shortName }
+        return names.isEmpty ? "open" : names.joined(separator: " ")
+    }
+
+    /// Six stack dots plus any extra keys, for the playing-screen hint.
+    /// "Oct  ●●● ●●●  palm D" — filled dots are down.
+    static func diagram(_ keys: Set<SaxKey>) -> String {
+        func dot(_ key: SaxKey) -> String { return keys.contains(key) ? "●" : "○" }
+        let oct = keys.contains(.octave) ? "Oct" : "oct"
+        let stack = "\(dot(.l1))\(dot(.l2))\(dot(.l3)) \(dot(.r1))\(dot(.r2))\(dot(.r3))"
+        let extras = SaxKey.chartOrder.filter { key in
+            keys.contains(key) && key != .octave && !SaxKey.stack.contains(key)
+        }.map { $0.shortName }
+        if extras.isEmpty { return "\(oct)  \(stack)" }
+        return "\(oct)  \(stack)  \(extras.joined(separator: " "))"
     }
 }

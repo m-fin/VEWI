@@ -1,167 +1,89 @@
 //
 //  ViewController.swift
-//  VirtualSax-Beta1
+//  VEWI
 //
-//  Created by Matthew Finley on 6/8/19.
-//  Copyright © 2019 Matthew Finley. All rights reserved.
+//  The storyboard settings scene from the first versions of the app.
+//  The playing screen opens SettingsViewController instead. This class stays
+//  so the storyboard scene still loads, and it writes the same SaxSettings.
 //
 
 import UIKit
 
-import AudioKit
-import AudioKitUI
-
-//Global variables
-var transpositionValue = 0
-var octaveModifierValue = 0.0
-var waveformValue: AKTable = sine
-var rampDuration = 0.05
-var volumeValue = 1.0
-
-//Maps the settings controls to values, shared by the settings screen and app launch
-func transpositionSemitones(forSegment index: Int) -> Int {
-    switch index {
-    case 1: return -2 //Bb
-    case 2: return -9 //Eb
-    default: return 0 //C
-    }
-}
-
-func waveform(forSegment index: Int) -> AKTable {
-    switch index {
-    case 1: return sawtooth
-    case 2: return square
-    case 3: return triangle
-    default: return sine
-    }
-}
-
-//Loads the saved settings into the globals the instrument plays with.
-//Without this the settings screen showed the saved choices, but the sound used the defaults until they were changed again.
-func loadSavedSettings() {
-    let settings = SaxSettings.load()
-    transpositionValue = settings.transposition.semitones
-    octaveModifierValue = Double(settings.octaveShift)
-    waveformValue = waveform(forSegment: settings.waveform.rawValue)
-    volumeValue = settings.volume
-    rampDuration = settings.rampDuration
-}
-
-//Old storyboard settings screen. The settings button now opens SettingsViewController instead;
-//this scene can be removed from Main.storyboard in Xcode.
 class ViewController: UITableViewController {
-    
-    var GameScene:GameScene?
-    
+    @IBOutlet weak var segTransposition: UISegmentedControl!
+    @IBOutlet weak var lblOctaveModifier: UILabel!
+    @IBOutlet weak var stepperOctaveModifier: UIStepper!
+    @IBOutlet weak var segWaveform: UISegmentedControl!
+    @IBOutlet weak var sliderRampDuration: UISlider!
+    @IBOutlet weak var lblRampDuration: UILabel!
+
+    private var settings = SaxSettings.load()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        /*
-        UserDefaults.standard.set(25, forKey: "Transposition_Value")
-        transpositionValue = UserDefaults.standard.integer(forKey: "Transposition_Value")
-        */
-        
-        segTransposition.selectedSegmentIndex = UserDefaults.standard.integer(forKey: "Transposition_Value_Index")
-        
-        stepperOctaveModifier.value = UserDefaults.standard.double(forKey: "Octave_Value")
-        
-        lblOctaveModifier.text = String(Int(stepperOctaveModifier.value))
-        
-        segWaveform.selectedSegmentIndex = UserDefaults.standard.integer(forKey: "Waveform_Value_Index")
-        
-        sliderRampDuration.value = Float(rampDuration)
-        
-        lblRampDuration.text = String(format: "%.2f", rampDuration)
- }
-    
-    @IBOutlet weak var segTransposition: UISegmentedControl!
-    
+        settings = SaxSettings.load()
+        segTransposition?.selectedSegmentIndex = settings.transposition.rawValue
+        stepperOctaveModifier?.value = Double(settings.octaveShift)
+        sliderRampDuration?.value = Float(settings.rampDuration)
+        segWaveform?.selectedSegmentIndex = legacyWaveformIndex(settings.preset)
+        showOctave()
+        lblRampDuration?.text = String(format: "%.2f", settings.rampDuration)
+    }
+
     @IBAction func segTranspositionValueChanged(_ sender: UISegmentedControl) {
-        transpositionValue = transpositionSemitones(forSegment: segTransposition.selectedSegmentIndex)
-        
-        UserDefaults.standard.set(segTransposition.selectedSegmentIndex, forKey: "Transposition_Value_Index")
-        
-        print(transpositionValue)
+        settings.transposition = Transposition(rawValue: sender.selectedSegmentIndex) ?? .eb
+        persist()
     }
-    
-    @IBOutlet weak var lblOctaveModifier: UILabel!
-    
-    @IBOutlet weak var stepperOctaveModifier: UIStepper!
-    
+
     @IBAction func stepperOctaveModifierValueChanged(_ sender: UIStepper) {
-        //set var to value
-        octaveModifierValue = Double(stepperOctaveModifier.value)
-        
-        //set lbl to var (if > 0, display as "+n"
-        if (octaveModifierValue > 0) {
-            var octaveModifierValueString = String(Int(octaveModifierValue))
-            lblOctaveModifier.text = "+\(octaveModifierValueString)"
-        }
-        else {
-            lblOctaveModifier.text = String(Int(octaveModifierValue))
-        }
-        
-        //set user default
-        UserDefaults.standard.set(stepperOctaveModifier.value, forKey: "Octave_Value") //set user default to value
-        
-        //debugging
-        print("octaveModifierValue: \(octaveModifierValue)")
-
+        settings.octaveShift = Int(sender.value)
+        showOctave()
+        persist()
     }
-    
-    @IBOutlet weak var segWaveform: UISegmentedControl!
-    
+
     @IBAction func segWaveformValueChanged(_ sender: UISegmentedControl) {
-        //Sine
-        if (segWaveform.selectedSegmentIndex == 0) {
-            waveformValue = sine
-            print(0)
+        switch sender.selectedSegmentIndex {
+        case 1: settings.preset = .saw
+        case 2: settings.preset = .square
+        case 3: settings.preset = .triangle
+        default: settings.preset = .sine
         }
-        //Sawtooth
-        else if (segWaveform.selectedSegmentIndex == 1) {
-            waveformValue = sawtooth
-            print(1)
-        }
-        //Square
-        else if (segWaveform.selectedSegmentIndex == 2) {
-            waveformValue = square
-        }
-        //Triangle
-        else if (segWaveform.selectedSegmentIndex == 3) {
-            waveformValue = triangle
-        }
-        else {
-            waveformValue = sine
-        }
-        UserDefaults.standard.set(segWaveform.selectedSegmentIndex, forKey: "Waveform_Value_Index")
-        
-        print(waveformValue)
-    }
-    
-    @IBOutlet weak var sliderRampDuration: UISlider!
-    
-    @IBOutlet weak var lblRampDuration: UILabel!
-    
-    @IBAction func sliderRampDurationValueChanged(_ sender: UISlider) {
-        rampDuration = Double(sliderRampDuration.value)
-        
-        lblRampDuration.text = String(format: "%.2f", rampDuration)
-    }
-    
-    @IBAction func btnResetToDefaults(_ sender: Any) {
-        resetSettingsToDefault()
-    }
-    
-    func resetSettingsToDefault() {
-        transpositionValue = 0
-        UserDefaults.standard.set(transpositionValue, forKey: "Transposition_Value_Index")
-        segTransposition.selectedSegmentIndex = 0
-        
-        octaveModifierValue = 0
-        UserDefaults.standard.set(octaveModifierValue, forKey: "Octave_Value")
-        var octaveModifierValueString = String(Int(octaveModifierValue))
-        lblOctaveModifier.text = "+\(octaveModifierValueString)"
+        persist()
     }
 
+    @IBAction func sliderRampDurationValueChanged(_ sender: UISlider) {
+        settings.rampDuration = Double(sender.value)
+        lblRampDuration?.text = String(format: "%.2f", settings.rampDuration)
+        persist()
+    }
+
+    @IBAction func btnResetToDefaults(_ sender: Any) {
+        settings = SaxSettings()
+        segTransposition?.selectedSegmentIndex = settings.transposition.rawValue
+        stepperOctaveModifier?.value = 0
+        sliderRampDuration?.value = Float(settings.rampDuration)
+        segWaveform?.selectedSegmentIndex = 0
+        showOctave()
+        lblRampDuration?.text = String(format: "%.2f", settings.rampDuration)
+        persist()
+    }
+
+    private func showOctave() {
+        let octave = settings.octaveShift
+        lblOctaveModifier?.text = octave > 0 ? "+\(octave)" : "\(octave)"
+    }
+
+    private func persist() {
+        settings.save()
+        NotificationCenter.default.post(name: SaxSettings.didChangeNotification, object: nil)
+    }
+
+    private func legacyWaveformIndex(_ preset: SoundPreset) -> Int {
+        switch preset {
+        case .saw: return 1
+        case .square: return 2
+        case .triangle: return 3
+        case .sine, .warmReed, .brightLead, .subtone: return 0
+        }
+    }
 }

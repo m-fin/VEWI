@@ -2,48 +2,50 @@
 //  LaunchViewController.swift
 //  VEWI
 //
-//  Start page: app title, a short quick-start, and buttons into play mode
-//  and settings. Built in code; AppDelegate puts it in front of the game.
+//  Start page. AppDelegate puts this in front of the playing screen.
 //
 
 import UIKit
 
 class LaunchViewController: UIViewController {
-
-    //The playing screen from the storyboard. AppDelegate hands it over at launch.
     var gameViewController: UIViewController?
-
-    private let stack = UIStackView(arrangedSubviews: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "VEWI"
         view.backgroundColor = .black
 
-        let titleLabel = makeLabel("VEWI", font: UIFont.boldSystemFont(ofSize: 56), color: .white)
-        let subtitle = makeLabel("Virtual Electronic Wind Instrument", font: UIFont.systemFont(ofSize: 17), color: .lightGray)
-
-        let quickStart = makeLabel(LaunchViewController.quickStartText, font: UIFont.systemFont(ofSize: 16), color: .white)
+        let titleLabel = makeLabel("VEWI", font: .boldSystemFont(ofSize: 56), color: .white)
+        let subtitle = makeLabel("Virtual Electronic Wind Instrument", font: .systemFont(ofSize: 17), color: .lightGray)
+        let quickStart = makeLabel(LaunchViewController.quickStartText, font: .systemFont(ofSize: 16), color: .white)
         quickStart.textAlignment = .left
 
         let play = makeButton("Play", action: #selector(playTapped), primary: true)
         let settings = makeButton("Settings", action: #selector(settingsTapped), primary: false)
         let chart = makeButton("Fingering Chart", action: #selector(chartTapped), primary: false)
 
+        let stack = UIStackView(arrangedSubviews: [titleLabel, subtitle, quickStart, play, settings, chart])
         stack.axis = .vertical
         stack.alignment = .fill
         stack.spacing = 16
         stack.translatesAutoresizingMaskIntoConstraints = false
-        for v in [titleLabel, subtitle, quickStart, play, settings, chart] as [UIView] {
-            stack.addArrangedSubview(v)
-        }
-        view.addSubview(stack)
+
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.addSubview(stack)
+        view.addSubview(scroll)
 
         let guide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            stack.centerYAnchor.constraint(equalTo: guide.centerYAnchor),
-            stack.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 32),
-            stack.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -32),
+            scroll.topAnchor.constraint(equalTo: guide.topAnchor),
+            scroll.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
+            scroll.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            scroll.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
+            scroll.contentLayoutGuide.widthAnchor.constraint(equalTo: scroll.frameLayoutGuide.widthAnchor),
+            stack.leadingAnchor.constraint(equalTo: scroll.contentLayoutGuide.leadingAnchor, constant: 28),
+            stack.trailingAnchor.constraint(equalTo: scroll.contentLayoutGuide.trailingAnchor, constant: -28),
+            stack.topAnchor.constraint(equalTo: scroll.contentLayoutGuide.topAnchor, constant: 36),
+            stack.bottomAnchor.constraint(equalTo: scroll.contentLayoutGuide.bottomAnchor, constant: -36),
             play.heightAnchor.constraint(equalToConstant: 52),
             settings.heightAnchor.constraint(equalToConstant: 52),
             chart.heightAnchor.constraint(equalToConstant: 52)
@@ -52,10 +54,10 @@ class LaunchViewController: UIViewController {
 
     static let quickStartText = """
     Quick start
-    • Hold the on-screen keys like saxophone keys: left column for your left hand, right column for your right hand.
-    • Lift every key to stop the sound.
-    • In Settings, pick your sax's key (Concert, B\u{266D} or E\u{266D}), octave, sound and volume.
-    • Tap Menu on the playing screen to come back here.
+    • Left hand on top: octave (thumb), L1 B, L2 A, L3 G, and the pinky table. Right hand below: R1 F, R2 E, R3 D.
+    • Hold the breath pad to play. Nothing pressed is open C♯ — lift the pad to stop.
+    • Bis, side B♭ (Ta), and 1+1 are the three B♭s. The F♯ key is the chromatic F♯.
+    • Settings defaults to alto (E♭): written A sounds concert C. B♭ and concert are there too.
     """
 
     override func viewWillAppear(_ animated: Bool) {
@@ -68,11 +70,7 @@ class LaunchViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
-    // MARK: - Actions
+    override var prefersStatusBarHidden: Bool { return true }
 
     @objc private func playTapped() {
         guard let game = gameViewController else { return }
@@ -80,33 +78,31 @@ class LaunchViewController: UIViewController {
     }
 
     @objc private func settingsTapped() {
-        navigationController?.pushViewController(SettingsViewController(style: .grouped), animated: true)
+        navigationController?.pushViewController(SettingsViewController(style: .insetGrouped), animated: true)
     }
 
     @objc private func chartTapped() {
-        navigationController?.pushViewController(FingeringChartViewController(style: .grouped), animated: true)
+        navigationController?.pushViewController(FingeringChartViewController(style: .insetGrouped), animated: true)
     }
-
-    // MARK: - Helpers
 
     private func makeLabel(_ text: String, font: UIFont, color: UIColor) -> UILabel {
-        let l = UILabel()
-        l.text = text
-        l.font = font
-        l.textColor = color
-        l.textAlignment = .center
-        l.numberOfLines = 0
-        return l
+        let label = UILabel()
+        label.text = text
+        label.font = font
+        label.textColor = color
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
     }
 
-    func makeButton(_ title: String, action: Selector, primary: Bool) -> UIButton {
-        let b = UIButton(type: .system)
-        b.setTitle(title, for: .normal)
-        b.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        b.setTitleColor(primary ? .black : .white, for: .normal)
-        b.backgroundColor = primary ? .white : UIColor(white: 0.2, alpha: 1)
-        b.layer.cornerRadius = 12
-        b.addTarget(self, action: action, for: .touchUpInside)
-        return b
+    private func makeButton(_ title: String, action: Selector, primary: Bool) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        button.setTitleColor(primary ? .black : .white, for: .normal)
+        button.backgroundColor = primary ? .white : UIColor(white: 0.16, alpha: 1)
+        button.layer.cornerRadius = 12
+        button.addTarget(self, action: action, for: .touchUpInside)
+        return button
     }
 }

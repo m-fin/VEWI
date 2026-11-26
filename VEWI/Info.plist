@@ -28,6 +28,19 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>VEWI listens for breath when microphone blow-detection is on, so open C♯ and the other notes can be played by blowing instead of holding a pad.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.matthewfinley.VirtualSax-Beta1</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>vewi</string>
+			</array>
+		</dict>
+	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
